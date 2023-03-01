@@ -15,9 +15,14 @@ const questions = [
             { text: "9", correct: false},
         ]
     },
-    // {
+    {
 
-    // },
+        question: "JavaScript is the same as Java?",
+        answers: [
+         {text: "true", correct: false},
+         {text: "false", correct: true},
+        ]
+    },
     // {
 
     // },
@@ -35,6 +40,8 @@ const questionContainer = document.getElementById("questionContainer");
 const question = document.getElementById("question");
 const answerButtons = document.getElementById("questionsanswers");
 const timer = document.getElementById("timer")
+const initialsForm = document.getElementById("initials-form");
+const initialsInput = document.getElementById("initials");
 
 let curQuestion = 0;
 let secondsLeft = 60;
@@ -88,6 +95,7 @@ function endQuiz() {
     questionContainer.classList.add("hideItems");
     // finalScore.innerText = score;
     console.log(secondsLeft)
+    initialsForm.classList.remove("hideItems");
 }
 
 function updateTimer() {
@@ -98,3 +106,19 @@ function updateTimer() {
       endQuiz();
     }
   }
+
+  initialsForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const initials = initialsInput.value.toUpperCase();
+    const newScore = {
+      "initials": initials,
+      "score": secondsLeft,
+    };
+
+    const makeString = JSON.stringify(newScore);
+    localStorage.setItem("newScore", makeString);
+    console.log(makeString)
+    
+
+  });
