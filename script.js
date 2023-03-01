@@ -33,35 +33,68 @@ const startButton = document.getElementById("start");
 const nextButton = document.getElementById("next");
 const questionContainer = document.getElementById("questionContainer");
 const question = document.getElementById("question");
-const answerButtons = document.getElementById("quetionsanswers");
+const answerButtons = document.getElementById("questionsanswers");
+const timer = document.getElementById("timer")
 
 let curQuestion = 0;
-let randomQuestion;
+let secondsLeft = 60;
+let score = 0;
+let timerIntervalId;
+
 
 startButton.addEventListener("click", gameController);
-nextButton.addEventListener("click", () => {
-    curQuestion++;
-    nextQuestion();
-})
+
 
 function gameController() {
     startButton.classList.add("hideItems");
-    randomQuestion = questions.sort(() => Math.random() - .5);
     questionContainer.classList.remove("hideItems");
-    nextQuestion(randomQuestion[curQuestion]);
+    // nextQuestion(questions[curQuestion]);
+    nextQuestion()
+    timerIntervalId = setInterval(updateTimer, 1000);
 }
 
-function nextQuestion(question) {
+function nextQuestion() {
+    const question = questions[curQuestion];
     question.innerText = question.question;
+    answerButtons.innerHTML = "";
     question.answers.forEach(element => {
         const button = document.createElement("button");
         button.innerHTML = element.text
         button.classList.add("button");
-        button.addEventListener("click", handleAnswer)
+        button.addEventListener("click", () => {
+             if(element.correct) {
+                score++;
+                console.log(score)
+             } else {
+                secondsLeft -+ 10;
+             }
+
+             curQuestion++
+             if(curQuestion < questions.length) {
+                nextQuestion();
+             } else {
+                endQuiz();
+             }
+
+        })
+
+        answerButtons.appendChild(button)
     });
-    answerButtons.appendChild(button)
+    
 }
 
-function handleAnswer() {
-
+function endQuiz() {
+    clearInterval(timerIntervalId);
+    questionContainer.classList.add("hideItems");
+    // finalScore.innerText = score;
+    console.log(secondsLeft)
 }
+
+function updateTimer() {
+    secondsLeft--;
+    timer.innerHTML = secondsLeft;
+    if (secondsLeft <= 0) {
+      clearInterval(timerIntervalId);
+      endQuiz();
+    }
+  }
