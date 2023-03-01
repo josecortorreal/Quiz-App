@@ -1,18 +1,18 @@
 const questions = [
     {
-        question: "What is 4 + 4",
+        question: "Is const mutable",
         answers: [
-            { text: "8", correct: true},
-            { text: "7", correct: false},
+            { text: "true", correct: false},
+            { text: "false", correct: true},
         ]
     },
     {
-        question: "What is 4 + 1",
+        question: "What are the basic data structures in JavaScript",
         answers: [
-            { text: "5", correct: true},
-            { text: "7", correct: false},
-            { text: "0", correct: false},
-            { text: "9", correct: false},
+            { text: "array lists", correct: false},
+            { text: "Json tables", correct: false},
+            { text: "map records", correct: false},
+            { text: "All of the above", correct: true},
         ]
     },
     {
@@ -23,6 +23,16 @@ const questions = [
          {text: "false", correct: true},
         ]
     },
+
+    {
+        question: "Where is the correct place to insert a JavaScript?",
+        answers: [
+            {text: "the body section", correct: false},
+            {text: "the head section", correct: false},
+            {text: "The head section and the body section are correct", correct: true},
+        ]
+    }
+
     // {
 
     // },
