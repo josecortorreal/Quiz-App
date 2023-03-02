@@ -1,13 +1,13 @@
 # Quiz-App
 
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
+https://josecortorreal.github.io/Quiz-App/ 
+
+
+![image](https://user-images.githubusercontent.com/121327572/222322368-4de2b691-1441-41c4-a370-6f7a428349ef.png)
+
+
+
+![image](https://user-images.githubusercontent.com/121327572/222322441-65769d44-f550-4bd1-bf88-6059444dff23.png)
+
+
+
