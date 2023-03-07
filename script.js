@@ -1,10 +1,10 @@
-const questions = [
+let questions = [
     {
         question: "Is const mutable",
         answers: [
             { text: "true", correct: false},
             { text: "false", correct: true},
-        ]
+        ],
     },
     {
         question: "What are the basic data structures in JavaScript",
@@ -13,15 +13,15 @@ const questions = [
             { text: "Json tables", correct: false},
             { text: "map records", correct: false},
             { text: "All of the above", correct: true},
-        ]
+        ],
     },
     {
 
-        question: "JavaScript is the same as Java?",
+        question: "JavaScript is the same as Java",
         answers: [
          {text: "true", correct: false},
          {text: "false", correct: true},
-        ]
+        ],
     },
 
     {
@@ -30,24 +30,14 @@ const questions = [
             {text: "the body section", correct: false},
             {text: "the head section", correct: false},
             {text: "The head section and the body section are correct", correct: true},
-        ]
+        ],
     }
-
-    // {
-
-    // },
-    // {
-
-    // },
-    // {
-
-    // },
 ]
 
 const startButton = document.getElementById("start");
 const nextButton = document.getElementById("next");
 const questionContainer = document.getElementById("questionContainer");
-const question = document.getElementById("question");
+const questionDiv = document.getElementById("question");
 const answerButtons = document.getElementById("questionsanswers");
 const timer = document.getElementById("timer")
 const initialsForm = document.getElementById("initials-form");
@@ -71,9 +61,10 @@ function gameController() {
 }
 
 function nextQuestion() {
-    const question = questions[curQuestion];
-    question.innerText = question.question;
+    let question = questions[curQuestion];
+    questionDiv.innerText = question.question;
     answerButtons.innerHTML = "";
+    console.log(question.question);
     question.answers.forEach(element => {
         const button = document.createElement("button");
         button.innerHTML = element.text
@@ -83,7 +74,7 @@ function nextQuestion() {
                 score++;
                 console.log(score)
              } else {
-                secondsLeft -+ 10;
+                secondsLeft -= 10;
              }
 
              curQuestion++
@@ -117,6 +108,15 @@ function updateTimer() {
     }
   }
 
+  function reset() {
+    startButton.classList.remove("hideItems");
+    initialsForm.classList.add("hideItems");
+    curQuestion = 0;
+    secondsLeft = 60;
+    score = 0;
+
+  }
+
   initialsForm.addEventListener("submit", (event) => {
     event.preventDefault();
 
@@ -128,7 +128,7 @@ function updateTimer() {
 
     const makeString = JSON.stringify(newScore);
     localStorage.setItem("newScore", makeString);
-    console.log(makeString)
-    
+    console.log(makeString);
 
+    reset();
   });
